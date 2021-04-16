@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using ObserverAPI.Data;
 using ObserverAPI.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,7 +31,7 @@ namespace ObserverAPI.Controllers
         public async Task<ActionResult<Parada>> GetById(long id)
         {
             var parada = await _context.Paradas
-                .SingleOrDefaultAsync(p => p.Id == id);
+                .FindAsync(id);
 
             if (parada == null)
             {
@@ -43,7 +42,7 @@ namespace ObserverAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Parada>> Post(Parada parada)
+        public async Task<ActionResult<Parada>> Post([FromBody] Parada parada)
         {
             _context.Paradas.Add(parada);
             await _context.SaveChangesAsync();
@@ -56,7 +55,7 @@ namespace ObserverAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Parada>> Put(long id, Parada parada)
+        public async Task<ActionResult<Parada>> Put(long id, [FromBody] Parada parada)
         {
             if (id != parada.Id)
             {
@@ -93,7 +92,7 @@ namespace ObserverAPI.Controllers
         public async Task<ActionResult<Parada>> Delete(long id)
         {
             var parada = await _context.Paradas
-                .SingleOrDefaultAsync(p => p.Id == id);
+                .FindAsync(id);
 
             if (parada == null)
             {
