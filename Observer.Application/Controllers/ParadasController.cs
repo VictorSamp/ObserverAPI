@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ObserverAPI.Data;
 using ObserverAPI.Entities;
+using ObserverAPI.Models.InputModels;
 using ObserverAPI.Models.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,15 +54,20 @@ namespace ObserverAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Parada>> Post([FromBody] Parada parada)
+        public async Task<ActionResult<ParadaViewModel>> Post([FromBody] AddParadaInputModel model)
         {
+            var parada = new Parada(
+                model.Nome,
+                model.Latitude,
+                model.Longitude);
+
             _context.Paradas.Add(parada);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(
-                nameof(GetById),
-                new { id = parada.Id },
-                parada
+                    nameof(GetById),
+                    new { id = parada.Id },
+                    parada
                 );
         }
 
