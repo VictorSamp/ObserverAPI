@@ -18,7 +18,7 @@ Esses requisitos são obrigatórios e devem ser desenvolvidos para a entrega do 
 
 Implementar as operações de **criação (POST)**, **consulta (GET)** (Por Id e GetAll), **atualização (PUT)** e **exclusão (DELETE)** de todas as entidades do seguinte diagrama:
 
-!['D](D:/workspace/programa-estagio-2021/imagens/backend_diagrama.png)
+!['D](./imagens/backend_diagrama.png)
 
 ### Métodos
 
