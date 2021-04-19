@@ -11,6 +11,7 @@ namespace ObserverAPI.Data
         }
 
         public DbSet<Parada> Paradas { get; set; }
+        public DbSet<Linha> Linhas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
