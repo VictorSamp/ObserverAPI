@@ -54,7 +54,7 @@ namespace ObserverAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] AddParadaInputModel model)
+        public async Task<ActionResult> Post([FromBody] AddParadaInputModel model)
         {
             var parada = new Parada(
                 model.Nome,
@@ -62,6 +62,7 @@ namespace ObserverAPI.Controllers
                 model.Longitude);
 
             _context.Paradas.Add(parada);
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(
