@@ -1,21 +1,15 @@
-﻿namespace ObserverAPI.Entities
+﻿namespace ObserverAPI.Models.InputModels
 {
-    public class Parada
+    public class UpdateParadaInputModel
     {
         public long Id { get; private set; }
         public string Nome { get; private set; }
         public double Latitude { get; private set; }
         public double Longitude { get; private set; }
 
-        public Parada(string nome, double latitude, double longitude)
+        public UpdateParadaInputModel(long id, string nome, double latitude, double longitude)
         {
-            Nome = nome;
-            Latitude = latitude;
-            Longitude = longitude;
-        }
-
-        public void UpdateParada(string nome, double latitude, double longitude)
-        {
+            Id = id;
             Nome = nome;
             Latitude = latitude;
             Longitude = longitude;

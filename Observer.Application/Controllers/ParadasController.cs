@@ -54,7 +54,7 @@ namespace ObserverAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ParadaViewModel>> Post([FromBody] AddParadaInputModel model)
+        public async Task<IActionResult> Post([FromBody] AddParadaInputModel model)
         {
             var parada = new Parada(
                 model.Nome,
@@ -72,35 +72,22 @@ namespace ObserverAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Parada>> Put(long id, [FromBody] Parada parada)
+        public async Task<ActionResult<UpdateParadaInputModel>> Put(long id, [FromBody] UpdateParadaInputModel model)
         {
-            if (id != parada.Id)
-            {
-                return BadRequest();
-            }
+            var parada = await _context.Paradas
+                .SingleOrDefaultAsync(p => p.Id == id);
 
-            if (GetById(id) == null)
+            if (parada == null)
             {
                 return NotFound();
             }
 
-            _context.Entry(parada).State = EntityState.Modified;
+            parada.UpdateParada(
+                model.Nome,
+                model.Latitude,
+                model.Longitude);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (ParadaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
