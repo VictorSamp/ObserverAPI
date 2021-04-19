@@ -13,5 +13,10 @@ namespace ObserverAPI.Entities
             Nome = nome;
             Paradas = new List<Parada>();
         }
+
+        public void UpdateLinha(string nome)
+        {
+            Nome = nome;
+        }
     }
 }
