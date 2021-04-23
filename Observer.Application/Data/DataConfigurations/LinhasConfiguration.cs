@@ -10,10 +10,6 @@ namespace ObserverAPI.Data.DataConfigurations
         {
             builder
                 .HasKey(l => l.Id);
-
-            builder
-                .HasMany(p => p.Paradas)
-                .WithOne();
         }
     }
 }
