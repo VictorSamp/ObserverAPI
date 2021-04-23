@@ -65,31 +65,6 @@ namespace ObserverAPI.Controllers
                 );
         }
 
-        [HttpPost("{linhaId}/adicionar-parada/{paradaId}")]
-        public async Task<ActionResult> AddParadaEmLinha(long linhaId, long paradaId)
-        {
-            var linha = await _context.Linhas
-                .SingleOrDefaultAsync(l => l.Id == linhaId);
-
-            if (linha == null)
-            {
-                return NotFound();
-            }
-
-            var parada = await _context.Paradas
-                .SingleOrDefaultAsync(p => p.Id == paradaId);
-
-            if (parada == null)
-            {
-                return NotFound();
-            }
-
-            linha.Paradas.Add(parada);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
         [HttpPut("{id}")]
         public async Task<ActionResult<UpdateLinhaInputModel>> Put(long id, [FromBody] UpdateLinhaInputModel model)
         {
@@ -119,6 +94,56 @@ namespace ObserverAPI.Controllers
             }
 
             _context.Linhas.Remove(linha);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpPost("{linhaId}/adicionar-parada/{paradaId}")]
+        public async Task<ActionResult> AddParadaEmLinha(long linhaId, long paradaId)
+        {
+            var linha = await _context.Linhas
+                .SingleOrDefaultAsync(l => l.Id == linhaId);
+
+            if (linha == null)
+            {
+                return NotFound();
+            }
+
+            var parada = await _context.Paradas
+                .SingleOrDefaultAsync(p => p.Id == paradaId);
+
+            if (parada == null)
+            {
+                return NotFound();
+            }
+
+            linha.Paradas.Add(parada);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{linhaId}/remover-parada/{paradaId}")]
+        public async Task<ActionResult> DeleteParadaEmLinha(long linhaId, long paradaId)
+        {
+            var linha = await _context.Linhas
+                .SingleOrDefaultAsync(l => l.Id == linhaId);
+
+            if (linha == null)
+            {
+                return NotFound();
+            }
+
+            var parada = await _context.Paradas
+                .SingleOrDefaultAsync(p => p.Id == paradaId);
+
+            if (parada == null)
+            {
+                return NotFound();
+            }
+
+            linha.Paradas.Remove(parada);
             await _context.SaveChangesAsync();
 
             return NoContent();
