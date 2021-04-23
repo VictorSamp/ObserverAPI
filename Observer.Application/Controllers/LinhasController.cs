@@ -27,7 +27,7 @@ namespace ObserverAPI.Controllers
             var linhas = await _context.Linhas.ToListAsync();
 
             var linhaViewModel = linhas
-                .Select(l => new LinhaViewModel(l.Id, l.Nome, l.Paradas))
+                .Select(l => new LinhaViewModel(l.Id, l.Nome))
                 .ToList();
 
             return Ok(linhaViewModel);
@@ -45,7 +45,7 @@ namespace ObserverAPI.Controllers
                 return NotFound();
             }
 
-            var linhaViewModel = new LinhaViewModel(linha.Id, linha.Nome, linha.Paradas);
+            var linhaViewModel = new LinhaViewModel(linha.Id, linha.Nome);
 
             return Ok(linhaViewModel);
         }

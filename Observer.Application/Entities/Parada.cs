@@ -1,4 +1,6 @@
-﻿namespace ObserverAPI.Entities
+﻿using System.Collections.Generic;
+
+namespace ObserverAPI.Entities
 {
     public class Parada
     {
@@ -6,6 +8,7 @@
         public string Nome { get; private set; }
         public double Latitude { get; private set; }
         public double Longitude { get; private set; }
+        public ICollection<Linha> Linhas { get; private set; }
 
         public Parada(string nome, double latitude, double longitude)
         {

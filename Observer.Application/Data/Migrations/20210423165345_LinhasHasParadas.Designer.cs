@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ObserverAPI.Data;
 
 namespace ObserverAPI.Data.Migrations
 {
     [DbContext(typeof(ObserverDbContext))]
-    partial class ObserverDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210423165345_LinhasHasParadas")]
+    partial class LinhasHasParadas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

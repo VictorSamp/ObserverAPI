@@ -7,13 +7,11 @@ namespace ObserverAPI.Models.ViewModels
     {
         public long Id { get; private set; }
         public string Nome { get; private set; }
-        public List<Parada> Paradas { get; private set; }
 
-        public LinhaViewModel(long id, string nome, List<Parada> paradas)
+        public LinhaViewModel(long id, string nome)
         {
             Id = id;
             Nome = nome;
-            Paradas = paradas;
         }
     }
 }
