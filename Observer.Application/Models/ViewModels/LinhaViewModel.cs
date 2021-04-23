@@ -1,7 +1,4 @@
-﻿using ObserverAPI.Entities;
-using System.Collections.Generic;
-
-namespace ObserverAPI.Models.ViewModels
+﻿namespace ObserverAPI.Models.ViewModels
 {
     public class LinhaViewModel
     {
